@@ -1,0 +1,32 @@
+<h2>Enter a new product</h2>
+
+<% if @product.errors.any? %>
+<ul>
+  <% @product.errors.full_messages.each do |error_msg| %>
+    <li style = "color: red"><%= error_msg %></li>
+  <% end %>
+</ul>
+<% end %>
+
+<!-- <div class="field_with_errors"> -->
+<!-- <%= @product.errors.full_messages.join(" - ") %> -->
+<!-- </div> -->
+
+<%= form_for @product do |f| %>
+<div>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+</div>
+<div>
+<%= f.label :description %>
+<%= f.text_area :description %>
+</div>
+<div>
+<%= f.label :price %>
+<%= f.text_field :price,
+    :value => (number_with_precision(f.object.price, :precision => 2) || 0) %>
+</div>
+<div>
+  <%= f.submit %>
+</div>
+<% end %>
