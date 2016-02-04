@@ -5,9 +5,10 @@ Rails.application.routes.draw do
   post '/products' => 'products#create', as: :products
   get '/products/:id' => 'products#show', as: :product
   get '/products' => 'products#index' #as only looks at URL, not the HTTP method
-  get "/products/:id/edit" => "products#edit", as: :edit_question
+  get "/products/:id/edit" => "products#edit", as: :edit_product
   patch "/products/:id" => "products#update"
-  delete "/products/:id" => "product#delete"
+
+  delete "/products/:id" => "products#destroy"
 
 
 
