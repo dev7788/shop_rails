@@ -6,3 +6,36 @@
 <h2><%= link_to "EDIT", edit_product_path(@product) %></h2>
 
 <h2><%= link_to "DELETE", product_path(@product), method: :delete, data: { confirm: "Are you sure??"} %></h2>
+
+<hr>
+
+<h2>Reviews</h2>
+<h3>Add a review: </h3>
+<!-- DISPLAYS THE ERROR FOR REVIEWS -->
+<% if @review.errors.any? %>
+<ul>
+  <% @review.errors.full_messages.each do |msg| %>
+    <li style = "color: red"><%= msg %></li>
+    <% end %>
+</ul>
+<% end %>
+<hr>
+<!-- FORM TO CREATE A NEW REVIERW -->
+<%= form_for [@product, @review] do |f|  %>
+  <div>
+    <%= f.label :body %>
+    <%= f.text_area :body %>
+  </div>
+  <div>
+    <%= f.submit %>
+  </div>
+<% end %>
+<!-- DISPLAY ALL THE REVIEWS -->
+<h2>Reviews:</h2>
+<% @product.reviews.each do |review| %>
+<li>
+  <%= review.body %>
+  <%= link_to "Delete", product_review_path(@product, review), method: :delete, data: { confirm: "Are you sure?!" } %>
+</li>
+<hr>
+<% end %>

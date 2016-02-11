@@ -1,16 +1,16 @@
 Rails.application.routes.draw do
   root 'products#index'
+  resources :products do
+    resources :reviews, only: [:create, :destroy]
+  end
 
-  get '/products/new' => 'products#new', as: :new_product
-  post '/products' => 'products#create', as: :products
-  get '/products/:id' => 'products#show', as: :product
-  get '/products' => 'products#index' #as only looks at URL, not the HTTP method
-  get "/products/:id/edit" => "products#edit", as: :edit_product
-  patch "/products/:id" => "products#update"
-
-  delete "/products/:id" => "products#destroy"
-
-
+  # get '/products/new' => 'products#new', as: :new_product
+  # post '/products' => 'products#create', as: :products
+  # get '/products/:id' => 'products#show', as: :product
+  # get '/products' => 'products#index' #as only looks at URL, not the HTTP method
+  # get "/products/:id/edit" => "products#edit", as: :edit_product
+  # patch "/products/:id" => "products#update"
+  # delete "/products/:id" => "products#destroy"
 
 
   # The priority is based upon order of creation: first created -> highest priority.
