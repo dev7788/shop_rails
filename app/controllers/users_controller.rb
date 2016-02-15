@@ -7,6 +7,8 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
+      # session simply checks for the user.ID in the current session?
+      # session[:user_id] = @user.id
       sign_in(@user)
       redirect_to root_path, notice: "User Created!"
     else
@@ -21,26 +23,3 @@ class UsersController < ApplicationController
       end
 
 end
-
-
-
-
-
-
-
-
-
-def create
-  @user = User.new(user_params)
-  if @user.save
-    # session simply checks for the user.ID in the current session?
-    # session[:user_id] = @user.id
-    sign_in(@user)
-    redirect_to root_path, notice: "User Created!"
-  else
-    render :new
-  end
-end
-#
-#
-#
