@@ -1,0 +1,53 @@
+@import "bootstrap";
+
+body {
+  font-family: 'Open Sans', sans-serif;
+}
+
+.fa-amazon {
+  transform: rotate(180deg);
+  color:white;
+   float: left;
+}
+.fa-unicorn {
+  float: right;
+}
+div.alert {
+  display: inline-block;
+  padding: 10px;
+  border-radius: 8px;
+  margin-bottom: 5px;
+}
+
+.brand-homepage {
+  font-size: 1.5em;
+  margin-left: 25px;
+  color: rgba(255, 255, 255, 1);
+   &:hover {
+     text-decoration: underline;
+     color: rgba(255, 255, 255, 1);
+   }
+}
+.navbar-dark .navbar-nav .nav-link {
+      color: rgba(255, 255, 255, 0.8);
+}
+.title {
+  margin-top: 25px;
+}
+.navbar-toggler {
+  color: white;
+}
+
+.product {
+  margin: 25px 0;
+}
+// show page
+.product-display {
+  .prod-cost {
+    font-size: 0.8em;
+    float: right;
+  }
+  p {
+    display: inline-block;
+  }
+}

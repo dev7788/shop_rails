@@ -5,21 +5,70 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
 </head>
 <body>
-<%= flash[:alert] || flash[:notice] %>
+  <nav class="navbar navbar-full navbar-dark" style="background-color: rgba(252, 184, 95, 0.92)">
 
-<% if user_signed_in? %>
-  Hello <%= current_user.first_name %>
-  <%= link_to "Log out", sessions_path, method: :delete %>
-<% else %>
-  <%= link_to "Sign Up", new_user_path %>
-  or <%= link_to "Sign In", new_session_path %>
-<% end %>
+      <div class="container">
+      <%= link_to root_path do %>
+        <i class="fa fa-amazon fa-3x"></i>
+      <% end %>
 
+  <i class="fa-4x fa-unicorn">🦄</i>
+      <h3 class = "<%= 'active' if current_page?(root_path)%>">
+        <strong><%= link_to "Nozama", root_path, class: "nav-link brand-homepage" %></strong>
+      </h3>
 
+      <button class="navbar-toggler hidden-md-up" type="button" data-toggle="collapse" data-target="#exCollapsingNavbar2"> &#9776; </button>
+      <div class="collapse navbar-toggleable-sm" id="exCollapsingNavbar2">
 
-<%= yield %>
+          <ul class="nav navbar-nav">
+            <li class="nav-item">
+
+            </li>
+            <% if user_signed_in? %>
+            <li class="nav-item <%= 'active' if current_page?(new_product_path)%>">
+              <%= link_to "Add a New Product", new_product_path, class: "nav-link" %>
+            </li>
+
+            <li class="nav-item <%= 'active' if current_page?(root_path) %>">
+              <%= link_to "Log out", sessions_path, method: :delete, class: "nav-link" %>
+            </li>
+
+            <% else %>
+              <li class="nav-item <%= 'active' if current_page?(new_user_path) %>">
+                <%= link_to "Sign Up", new_user_path, class: "nav-link" %>
+              </li>
+              <li class="nav-item <%= 'active' if current_page?(new_session_path) %>">
+                <%= link_to "Sign In", new_session_path, class: "nav-link" %>
+              </li>
+            <% end %>
+          </ul>
+      </div>
+    </div>
+  </nav>
+
+  <% if flash %>
+    <section class="container ">
+      <% flash.each do | message_type, message| %>
+      <%= content_tag(:div, message, class: "alert alert-#{message_type}") %>
+      <% end  %>
+    </section>
+  <% end %>
+
+<%# if user_signed_in? %>
+  <!-- Hello <%# current_user.first_name %> -->
+  <%# link_to "Log out", sessions_path, method: :delete %>
+<%# else %>
+  <%# link_to "Sign Up", new_user_path %>
+  <!-- or <%# link_to "Sign In", new_session_path %> -->
+<%# end %>
+
+<main class="container">
+  <%= yield %>
+</main>
 
 </body>
 </html>

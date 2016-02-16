@@ -1,41 +1,50 @@
-<h1><%= @product.name %></h1>
+<!-- LIST PRODUCT -->
+<div class="row">
+  <div class="product-display form-group-lg col-md-6 col-md-offset-3">
+<h1><%= @product.name %> <span class="prod-cost"><%= number_to_currency(@product.price) %></span></h1>
 <h5><%= @product.description %></h5>
+<p class = "text-muted"><%= link_to "EDIT", edit_product_path(@product) %></p>
+<p class = "text-muted"><%= link_to "DELETE", product_path(@product), method: :delete, data: { confirm: "Are you sure??"} %></hp>
+  </div>
+</div>
 
-<h2><%= number_to_currency(@product.price) %></h2>
-
-<h2><%= link_to "EDIT", edit_product_path(@product) %></h2>
-
-<h2><%= link_to "DELETE", product_path(@product), method: :delete, data: { confirm: "Are you sure??"} %></h2>
-
-<hr>
-
-<h2>Reviews</h2>
-<h3>Add a review: </h3>
-<!-- DISPLAYS THE ERROR FOR REVIEWS -->
-<% if @review.errors.any? %>
-<ul>
-  <% @review.errors.full_messages.each do |msg| %>
-    <li style = "color: red"><%= msg %></li>
+<h3 class = "text-lg-center">Add a review: </h3>
+    <!-- DISPLAYS THE ERROR FOR REVIEWS -->
+    <% if @review.errors.any? %>
+    <div class="row">
+      <div class="form-group-lg col-md-6 col-md-offset-3 alert alert-danger">
+        <p>The form contains <strong><%= pluralize(@review.errors.count, "error") %></strong>.</p>
+      <ul>
+        <% @review.errors.full_messages.each do |error| %>
+          <li><%= error %></li>
+        <% end %>
+      </ul>
     <% end %>
-</ul>
-<% end %>
-<hr>
-<!-- FORM TO CREATE A NEW REVIERW -->
-<%= form_for [@product, @review] do |f|  %>
-  <div>
-    <%= f.label :body %>
-    <%= f.text_area :body %>
   </div>
-  <div>
-    <%= f.submit %>
+</div>
+  <!-- CREATE NEW REVIEWS -->
+<div class="row">
+  <div class="form-group-lg col-md-6 col-md-offset-3">
+    <%= form_for [@product, @review] do |f|  %>
+      <div class = "form-group">
+        <%# f.label :body %>
+        <%= f.text_area :body, class: "form-control" %>
+      </div>
+      <div class = "form-group">
+          <%= f.submit "Create Review", class: "btn btn-primary-outline btn-block" %>
+      </div>
+    <% end %>
   </div>
-<% end %>
+</div>
 <!-- DISPLAY ALL THE REVIEWS -->
-<h2>Reviews:</h2>
-<% @product.reviews.each do |review| %>
-<li>
-  <%= review.body %>
-  <%= link_to "Delete", product_review_path(@product, review), method: :delete, data: { confirm: "Are you sure?!" } %>
-</li>
-<hr>
-<% end %>
+<div class="row">
+  <div class="form-group-lg col-md-6 col-md-offset-3">
+    <h2 class= "text-lg-center">Reviews:</h2>
+      <% @product.reviews.each do |review| %>
+      <li>
+        <%= review.body %>
+        <%= link_to "Delete", product_review_path(@product, review), method: :delete, data: { confirm: "Are you sure?!" } %>
+      </li>
+    <% end %>
+  </div>
+</div>

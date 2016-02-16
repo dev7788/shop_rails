@@ -15,7 +15,7 @@ class ProductsController < ApplicationController
     # puts product_params
     @product = Product.new(product_params)
     if @product.save
-      flash[:notice] = "That's a really thoughtful update -- thanks"
+      flash[:success] = "Sounds like a real seller..."
       redirect_to product_path(@product)
     else
       render :new
@@ -35,7 +35,7 @@ class ProductsController < ApplicationController
     # @product = Product.find(params[:id])
     # product_params = params.require(:product).permit([:name, :description, :price])
     if @product.update(product_params)
-      redirect_to(product_path(@product), { notice: "product updated" })
+      redirect_to(product_path(@product), flash: { success: "product updated" })
     else
       render :edit
     end
@@ -44,7 +44,7 @@ class ProductsController < ApplicationController
   def destroy
     # product = Product.find(params[:id])
     @product.destroy
-    redirect_to(root_path, { notice: "product deleted" })
+    redirect_to(root_path, flash: { danger: "product deleted" })
   end
 
   private

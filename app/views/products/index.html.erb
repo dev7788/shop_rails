@@ -1,6 +1,13 @@
-<h1>Amazon Products (<%= @products.length %>)!!! </h1>
-<ul>
-  <% @products.each do |product| %>
-    <li><%= link_to product.name, product_path({id: product.id}) %> || $<%= number_to_currency(product.price) %> <hr> </li>
-  <% end %>
-</ul>
+<h1 class = "title text-lg-center">All Products (<%= @products.length %>) </h1>
+<!-- List All Products -->
+<article class="row">
+  <section class="list-products">
+    <% @products.each do |product| %>
+      <section class="col-md-4 product">
+        <h4><%= link_to product.name, product_path({id: product.id}) %></h4>
+            <strong><%= number_to_currency(product.price) %></strong>
+            <span class="emo-prod"><%= Emoji.find_by_alias("lemon").raw %></span>
+        </section>
+    <% end %>
+  </section>
+</article>
