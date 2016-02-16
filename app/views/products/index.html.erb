@@ -3,13 +3,18 @@
 <article class="row">
   <section class="list-products">
     <% @products.each do |product| %>
-      <section class="col-md-4 col-sm-4 col-xs-6 product item">
+      <section class="col-md-4 col-sm-4 col-xs-product item">
         <h4><%= link_to product.name, product_path({id: product.id}) %></h4>
             <strong><%= number_to_currency(product.price) %></strong>
             <span class="emo-prod"><%= Emoji.find_by_alias("lemon").raw %></span>
             <p><%= product.description %></p>
         </section>
     <% end %>
+  </section>
+</article>
+<article class="row">
+  <section class="text-lg-center">
+    <%= paginate @products %>
   </section>
 </article>
 <script>
