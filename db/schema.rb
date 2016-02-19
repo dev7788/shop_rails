@@ -11,10 +11,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160211230716) do
+ActiveRecord::Schema.define(version: 20160219184610) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "departmentalizations", force: :cascade do |t|
+    t.integer  "department_id"
+    t.integer  "product_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "departmentalizations", ["department_id"], name: "index_departmentalizations_on_department_id", using: :btree
+  add_index "departmentalizations", ["product_id"], name: "index_departmentalizations_on_product_id", using: :btree
+
+  create_table "departments", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "products", force: :cascade do |t|
     t.string   "name"
@@ -44,5 +60,7 @@ ActiveRecord::Schema.define(version: 20160211230716) do
 
   add_index "users", ["email"], name: "index_users_on_email", using: :btree
 
+  add_foreign_key "departmentalizations", "departments"
+  add_foreign_key "departmentalizations", "products"
   add_foreign_key "reviews", "products"
 end

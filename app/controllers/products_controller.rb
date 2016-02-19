@@ -50,7 +50,8 @@ class ProductsController < ApplicationController
   private
 
     def product_params
-      params.require(:product).permit([:name, :description, :price])
+      params.require(:product).permit([:name, :description, :price,
+                                            { department_ids: [] }])
     end
 
     def find_product

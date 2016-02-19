@@ -12,3 +12,7 @@
                         price: Faker::Commerce.price)
   product.save
 end
+
+["Poetry", "Essay Poetica", "Poetic Dictionaries", "Poetic Tomes", "Poetic Essays"].each do |dept|
+  Department.create(name: dept)
+end

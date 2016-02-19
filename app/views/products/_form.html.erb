@@ -26,6 +26,9 @@
         <%= f.label :description %>
         <%= f.text_area :description, class: 'form-control' %>
       </div>
+      <div class="form-group">
+      <%= f.collection_check_boxes(:department_ids, Department.order("name"), :id, :name) %>
+      </div>
       <div class = "form-group">
         <%= f.label :price %>
         <%= f.text_field :price,
