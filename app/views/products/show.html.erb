@@ -8,36 +8,10 @@
   </div>
 </div>
 
-<h3 class = "text-lg-center">Add a review: </h3>
-    <!-- DISPLAYS THE ERROR FOR REVIEWS -->
-    <% if @review.errors.any? %>
-    <div class="row">
-      <div class="form-group-lg col-md-6 col-md-offset-3 alert alert-danger">
-        <p>The form contains <strong><%= pluralize(@review.errors.count, "error") %></strong>.</p>
-      <ul>
-        <% @review.errors.full_messages.each do |error| %>
-          <li><%= error %></li>
-        <% end %>
-      </ul>
-    <% end %>
-  </div>
-</div>
-  <!-- CREATE NEW REVIEWS -->
-<div class="row">
-  <div class="form-group-lg col-md-6 col-md-offset-3">
-    <%= form_for [@product, @review], remote: true do |f|  %>
-      <div class = "form-group">
-        <%# f.label :body %>
-        <%= f.text_area :body, class: "form-control" %>
-      </div>
-      <div class = "form-group">
-          <%= f.submit "Create Review", class: "btn btn-primary-outline btn-block" %>
-      </div>
-    <% end %>
-  </div>
+<div id="review_form">
+  <%= render "/reviews/form" %>
 </div>
 
-<%# this remote true: is using $("form[data-remote='true']").on("submit", function(e) {e.preventDefault()}); Just preventing defualt submit action along with a data-remote true attribute %>
 
 <!-- DISPLAY ALL THE REVIEWS -->
 <div class="row">
