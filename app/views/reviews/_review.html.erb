@@ -1,4 +1,7 @@
-<li>
+<li id = "<%= dom_id(review) %>">
   <%= review.body %>
-  <%= link_to "Delete", product_review_path(@product, review), method: :delete, data: { confirm: "Are you sure?!" } %>
+  <%= link_to "Delete", product_review_path(@product, review),
+                        method: :delete,
+                        remote: true,
+                        data: { confirm: "Are you sure?!" } %>
 </li>

@@ -11,7 +11,6 @@
 </div>
 <% end %>
 
-
 <!-- <div class="field_with_errors"> -->
 <!-- <%= @product.errors.full_messages.join(" - ") %> -->
 <!-- </div> -->
@@ -27,6 +26,7 @@
         <%= f.text_area :description, class: 'form-control' %>
       </div>
       <div class="form-group">
+        <%# the attribute we are working with the order, what it posts to the server, what it displays %>
       <%= f.collection_check_boxes(:department_ids, Department.order("name"), :id, :name) %>
       </div>
       <div class = "form-group">

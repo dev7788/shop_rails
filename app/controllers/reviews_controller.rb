@@ -11,6 +11,7 @@ class ReviewsController < ApplicationController
       if @review.save
         format.html { redirect_to product_path((@product), flash: { success: "Review created successfully"}) }
         format.js { render :create_success }
+        # at a given request only a single one of these will execute
       else
         # can just render the template associated here...but how does it find the id? we already have the id
         format.html { render "products/show" }
@@ -24,7 +25,10 @@ class ReviewsController < ApplicationController
     @review = Review.find(params[:id])
     @review.destroy
     # we can redirect back to the product path because our resources are in the URL and are accessible.
-    redirect_to product_path(params[:product_id]), flash: { danger: "Answer Deleted." }
+    respond_to do |format|
+    format.html { redirect_to product_path(params[:product_id]), flash: { danger: "Answer Deleted." } }
+    format.js { render }
+    end
   end
 
     private
