@@ -1,2 +1,4 @@
 $('.listed-reviews').prepend("<%= j render 'review', review: @review %>");
-$('#review_body').val("");
+<% @review = Review.new %>
+$("#review_form").html("<%= j render 'form' %>")
+$("#review_body").val("");

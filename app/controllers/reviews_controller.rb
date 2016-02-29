@@ -15,7 +15,7 @@ class ReviewsController < ApplicationController
       else
         # can just render the template associated here...but how does it find the id? we already have the id
         format.html { render "products/show" }
-        format.js { render js: "alert('error happened');" }
+        format.js { render :create_failure }
         # render json: params
       end
     end
