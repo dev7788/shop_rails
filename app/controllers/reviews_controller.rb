@@ -26,8 +26,8 @@ class ReviewsController < ApplicationController
     @review.destroy
     # we can redirect back to the product path because our resources are in the URL and are accessible.
     respond_to do |format|
-    format.html { redirect_to product_path(params[:product_id]), flash: { danger: "Answer Deleted." } }
-    format.js { render }
+      format.html { redirect_to product_path(params[:product_id]), flash: { danger: "Answer Deleted." } }
+      format.js { render }
     end
   end
 

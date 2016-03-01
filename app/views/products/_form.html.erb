@@ -32,7 +32,7 @@
       <div class = "form-group">
         <%= f.label :price %>
         <%= f.text_field :price,
-          :value => (number_with_precision(f.object.price, :precision => 2) || 0) , class: 'form-control' %>
+          :value => (number_with_precision(f.object.price, :precision => 2) || 0), class: 'form-control' %>
       </div>
       <div class = "form-group">
         <%= f.submit "Create Product", class: "btn btn-primary-outline btn-block" %>
